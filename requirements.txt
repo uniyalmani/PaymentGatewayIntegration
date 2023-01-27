@@ -1,0 +1,12 @@
+fastapi
+uvicorn 
+gunicorn
+psycopg2-binary
+sqlmodel
+mysqlclient
+passlib[bcrypt]
+pyjwt
+python-multipart
+itsdangerous
+instamojo-wrapper
+

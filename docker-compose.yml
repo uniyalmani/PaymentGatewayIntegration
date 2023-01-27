@@ -1,0 +1,57 @@
+version: '3.9'
+
+services:
+  mysql_db_pg:
+    image: mysql:latest
+    container_name: mysql_db_pg
+    hostname: mysql_db_pg
+    environment:
+      - MYSQL_ROOT_HOST="%"
+      - MYSQL_ROOT_PASSWORD=fynd123
+      - MYSQL_DATABASE=fynd_acad
+      - MYSQL_USER=fynd_acad
+      - MYSQL_PASSWORD=fynd123 
+    ports:
+      - "3305:3306"
+    volumes:
+      - /home/nitin/fynd_acad/docker-data/paymentgateway/v2:/var/lib/mysql 
+    
+    # networks:
+    #   - localnet
+
+  pg_app:
+    container_name: pg_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+ 
+    environment:
+      - SECRET_KEY="qwertyuiopasdfghjklzxcvbnmgenratedfjsdfjs"
+      - ALGORITHM="HS256"
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - MYSQL_ROOT_HOST=mysql_db_pg
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_PASSWORD=fynd123
+      - MYSQL_DATABASE=fynd_acad
+      - MYSQL_USER=fynd_acad
+      - MYSQL_PASSWORD=fynd123
+      - INSTA_MOJO_API_KEY=test_5898303ef247ef6c4fd1768216f
+      - INSTA_MOJO_AUTH_KEY=test_1f25b8f22786e42a4ee76a946c1
+      - CASHFREE_APP_ID=30389585216b6be6a1ee9a9161598303
+      - CASHFREE_SECRETKEY=d2406fd737d4b45b2297261e513c17cbcb07f7b5
+
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mysql_db_pg
+    ports:  
+      - "8000:8000"
+      - "5678:5678"
+
+    # networks:
+    #   - localnet
+
+# networks:
+#   localnet:
+#     name: localnet
+#     external: true
