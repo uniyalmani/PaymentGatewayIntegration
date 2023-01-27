@@ -38,7 +38,7 @@ password: 9410197255
 }
 ```
 
-* order product for user route -> /order_product   authentication req
+* order product for user route -> /order_product   **authentication req**
 
 ```
 {
@@ -47,7 +47,7 @@ password: 9410197255
 }
 ```
 
-* list all product ordered by user route -> /all_user_ordered_product
+* list all product ordered by user route -> /all_user_ordered_product **authentication req**
 
 * list all product available /list_all_product
 
