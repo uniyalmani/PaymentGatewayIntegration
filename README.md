@@ -9,14 +9,16 @@ email: nitinuniyal21@gmail.com
 password: 9410197255
 }
 ```
+
 * creating product admin  route authentication req-> /create_product
+```
 {
   "name": "string",
   "amount": 0,
   "discription": "string"
 }```
 
-```
+
 * user account login route -> login/user
 ```
 {
